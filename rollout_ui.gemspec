@@ -1,0 +1,24 @@
+# -*- encoding: utf-8 -*-
+$:.push File.expand_path("../lib", __FILE__)
+require "rollout_ui/version"
+
+Gem::Specification.new do |gem|
+  gem.name          = "rollout_ui"
+  gem.version       = RolloutUI::VERSION
+  gem.authors       = ["John Allison"]
+  gem.email         = ["jrallison@gmail.com"]
+  gem.description   = %q{A UI for James Golick's rollout gem}
+  gem.summary       = %q{A UI for James Golick's rollout gem}
+  gem.homepage      = "http://github.com/jrallison/rollout_ui"
+
+  gem.files         = Dir["lib/**/*"] + ["Rakefile", "README.markdown"]
+  gem.test_files    = Dir["spec/**/*"]
+  gem.require_paths = ["lib"]
+
+  gem.add_runtime_dependency('rollout')
+
+  gem.add_development_dependency('rake')
+  gem.add_development_dependency('rspec')
+  gem.add_development_dependency('rack-test')
+  gem.add_development_dependency('redis-namespace')
+end
