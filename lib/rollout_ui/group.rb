@@ -8,7 +8,7 @@ class Rollout
 end
 
 class RolloutUI::Group
-  @@groups = {}
+  @@groups = {:all => true}
 
   def self.all
     @@groups.keys
@@ -19,6 +19,6 @@ class RolloutUI::Group
   end
 
   def self.reset!
-    @@groups = {}
+    @@groups = {:all => true}
   end
 end

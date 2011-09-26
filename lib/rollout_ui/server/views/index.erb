@@ -1,0 +1,5 @@
+<h2>Features</h2>
+
+<% RolloutUI::Feature.all.each do |feature| %>
+  <%= partial :feature, :feature => feature %>
+<% end %>
