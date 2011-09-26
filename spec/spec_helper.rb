@@ -17,6 +17,7 @@ RSpec.configure do |config|
 
   config.before(:each) do
     RolloutUI::Feature.reset!
+    RolloutUI::Group.reset!
 
     keys = $redis.keys("*")
     $redis.del(*keys) unless keys.empty?
