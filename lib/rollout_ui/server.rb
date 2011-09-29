@@ -46,7 +46,7 @@ module RolloutUI
 
       rollout.activate_percentage(feature, params["percentage"]) if params["percentage"]
 
-      params["groups"].each do |group|
+      (params["groups"] || []).each do |group|
         rollout.activate_group(feature, group)
       end
 
