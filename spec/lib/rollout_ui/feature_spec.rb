@@ -7,15 +7,15 @@ describe RolloutUI::Feature do
       RolloutUI::Feature.add(:feature2)
 
       RolloutUI::Feature.all.length.should == 2
-      RolloutUI::Feature.all.include?(:feature1).should be_true
-      RolloutUI::Feature.all.include?(:feature2).should be_true
+      RolloutUI::Feature.all.include?("feature1").should be_true
+      RolloutUI::Feature.all.include?("feature2").should be_true
     end
 
     it "doesn't add a given feature twice" do
       RolloutUI::Feature.add(:feature1)
       RolloutUI::Feature.add(:feature1)
 
-      RolloutUI::Feature.all.should == [:feature1]
+      RolloutUI::Feature.all.should == ["feature1"]
     end
   end
 
@@ -25,8 +25,8 @@ describe RolloutUI::Feature do
       rollout.active?(:feature2, mock(:user, :id => 5))
 
       RolloutUI::Feature.all.length.should == 2
-      RolloutUI::Feature.all.include?(:feature1).should be_true
-      RolloutUI::Feature.all.include?(:feature2).should be_true
+      RolloutUI::Feature.all.include?("feature1").should be_true
+      RolloutUI::Feature.all.include?("feature2").should be_true
     end
   end
 end

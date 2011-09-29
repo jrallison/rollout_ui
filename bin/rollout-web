@@ -9,7 +9,9 @@ rescue LoadError
   require 'vegas'
 end
 
-require "#{File.dirname(__FILE__)}/../lib/rollout_ui"
+require 'rollout_ui'
+
+RolloutUI.redis = Redis.new
 
 Vegas::Runner.new(RolloutUI::Server, 'rollout-web') do |runner, opts, app|
 end

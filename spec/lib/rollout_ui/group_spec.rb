@@ -7,9 +7,9 @@ describe RolloutUI::Group do
       RolloutUI::Group.add(:group2)
 
       RolloutUI::Group.all.length.should == 3
-      RolloutUI::Group.all.include?(:all).should be_true
-      RolloutUI::Group.all.include?(:group1).should be_true
-      RolloutUI::Group.all.include?(:group2).should be_true
+      RolloutUI::Group.all.include?("all").should be_true
+      RolloutUI::Group.all.include?("group1").should be_true
+      RolloutUI::Group.all.include?("group2").should be_true
     end
 
     it "doesn't add a given group twice" do
@@ -17,8 +17,8 @@ describe RolloutUI::Group do
       RolloutUI::Group.add(:group1)
 
       RolloutUI::Group.all.length.should == 2
-      RolloutUI::Group.all.include?(:all).should be_true
-      RolloutUI::Group.all.include?(:group1).should be_true
+      RolloutUI::Group.all.include?("all").should be_true
+      RolloutUI::Group.all.include?("group1").should be_true
     end
   end
 
@@ -28,9 +28,9 @@ describe RolloutUI::Group do
       rollout.define_group(:group2){ |user| true }
 
       RolloutUI::Group.all.length.should == 3
-      RolloutUI::Group.all.include?(:all).should be_true
-      RolloutUI::Group.all.include?(:group1).should be_true
-      RolloutUI::Group.all.include?(:group2).should be_true
+      RolloutUI::Group.all.include?("all").should be_true
+      RolloutUI::Group.all.include?("group1").should be_true
+      RolloutUI::Group.all.include?("group2").should be_true
     end
   end
 end

@@ -11,6 +11,8 @@ require 'rack/test'
 $redis = Redis.new
 $redis = Redis::Namespace.new('rollout_ui:test', :redis => $redis)
 
+RolloutUI.redis = $redis
+
 RSpec.configure do |config|
   config.include Rack::Test::Methods
   config.include AppHelper

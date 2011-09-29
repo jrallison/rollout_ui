@@ -4,7 +4,7 @@ require "rollout_ui/version"
 
 Gem::Specification.new do |gem|
   gem.name          = "rollout_ui"
-  gem.version       = RolloutUI::VERSION
+  gem.version       = RolloutUI::Version
   gem.authors       = ["John Allison"]
   gem.email         = ["jrallison@gmail.com"]
   gem.description   = %q{A UI for James Golick's rollout gem}

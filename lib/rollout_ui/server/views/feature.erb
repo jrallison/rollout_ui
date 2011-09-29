@@ -1,1 +1,35 @@
-<%= feature %>
+<h3><%= feature %></h3>
+
+<form action="update" method="post">
+  <input type="hidden" name="feature" value="<%= feature %>" />
+
+  <select name="percentage">
+    <% 101.times do |i| %>
+      <option<%= " selected='selected'" if RolloutUI.redis.get("feature:#{feature}:percentage").to_i == i %>><%= i %></option>
+    <% end %>
+  </select>%
+
+  <select name="groups[]" multiple="multiple">
+    <% RolloutUI::Group.all.each do |group| %>
+      <option<%= " selected='selected'" if RolloutUI.redis.sismember("feature:#{feature}:groups", group) %>><%= group %></option>
+    <% end %>
+  </select>
+
+  <% RolloutUI.redis.smembers("feature:#{feature}:users").each do |user| %>
+    <input type="text" name="users[]" value="<%= user %>" />
+  <% end %>
+
+  <button id="add_user">Add User ID</button>
+
+  <input type="submit" value="Save" />
+</form>
+
+<script type="text/javascript">
+  document.getElementById("add_user").onclick = function() {
+    elem = document.createElement("input");
+    elem.setAttribute("type", "text");
+    elem.setAttribute("name", "users[]");
+    this.parentNode.insertBefore(elem, this);
+    return false;
+  };
+</script>

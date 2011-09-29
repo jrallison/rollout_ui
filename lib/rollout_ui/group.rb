@@ -8,17 +8,15 @@ class Rollout
 end
 
 class RolloutUI::Group
-  @@groups = {:all => true}
-
   def self.all
-    @@groups.keys
+    RolloutUI.redis.smembers(:groups) << "all"
   end
 
   def self.add(group)
-    @@groups[group] = true
+    RolloutUI.redis.sadd(:groups, group)
   end
 
   def self.reset!
-    @@groups = {:all => true}
+    RolloutUI.redis.del(:groups)
   end
 end

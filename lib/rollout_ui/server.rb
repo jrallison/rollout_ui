@@ -6,32 +6,55 @@ if defined? Encoding
   Encoding.default_external = Encoding::UTF_8
 end
 
-class RolloutUI::Server < Sinatra::Base
-  dir = File.dirname(File.expand_path(__FILE__))
+module RolloutUI
+  User = Struct.new(:id)
 
-  set :views,  "#{dir}/server/views"
-  set :public, "#{dir}/server/public"
-  set :static, true
+  class RolloutUI::Server < Sinatra::Base
+    dir = File.dirname(File.expand_path(__FILE__))
 
-  helpers do
-    include Rack::Utils
-    alias_method :h, :escape_html
+    set :views,  "#{dir}/server/views"
+    set :public, "#{dir}/server/public"
+    set :static, true
 
-    def partial?
-      @partial
+    helpers do
+      include Rack::Utils
+      alias_method :h, :escape_html
+
+      def partial?
+        @partial
+      end
+
+      def partial(template, local_vars = {})
+        @partial = true
+        erb(template.to_sym, {:layout => false}, local_vars)
+      ensure
+        @partial = false
+      end
     end
 
-    def partial(template, local_vars = {})
-      @partial = true
-      erb(template.to_sym, {:layout => false}, local_vars)
-    ensure
-      @partial = false
+    # to make things easier on ourselves
+    get "/?" do
+      response["Cache-Control"] = "max-age=0, private, must-revalidate"
+      erb :index, {:layout => true}
     end
-  end
 
-  # to make things easier on ourselves
-  get "/?" do
-    response["Cache-Control"] = "max-age=0, private, must-revalidate"
-    erb :index, {:layout => true}
+    post '/update' do
+      feature = params["feature"]
+      rollout = Rollout.new(RolloutUI.redis)
+
+      rollout.deactivate_all(feature)
+
+      rollout.activate_percentage(feature, params["percentage"]) if params["percentage"]
+
+      params["groups"].each do |group|
+        rollout.activate_group(feature, group)
+      end
+
+      (params["users"] || []).each do |user|
+        rollout.activate_user(feature, User.new(user)) unless user.empty?
+      end
+
+      redirect '/'
+    end
   end
 end

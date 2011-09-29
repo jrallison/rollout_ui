@@ -8,17 +8,15 @@ class Rollout
 end
 
 class RolloutUI::Feature
-  @@features = {}
-
   def self.all
-    @@features.keys
+    RolloutUI.redis.smembers(:features)
   end
 
   def self.add(feature)
-    @@features[feature] = true
+    RolloutUI.redis.sadd(:features, feature)
   end
 
   def self.reset!
-    @@features = {}
+    RolloutUI.redis.del(:features)
   end
 end
