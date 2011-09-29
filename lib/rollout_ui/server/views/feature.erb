@@ -1,6 +1,6 @@
 <h3><%= feature %></h3>
 
-<form action="update" method="post">
+<form action="<%= u("update") %>" method="post">
   <input type="hidden" name="feature" value="<%= feature %>" />
 
   <select name="percentage">
@@ -10,6 +10,7 @@
   </select>%
 
   <select name="groups[]" multiple="multiple">
+    <option value="">Select a group</option>
     <% RolloutUI::Group.all.each do |group| %>
       <option<%= " selected='selected'" if RolloutUI.redis.sismember("feature:#{feature}:groups", group) %>><%= group %></option>
     <% end %>
