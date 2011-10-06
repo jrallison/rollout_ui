@@ -1,6 +1,6 @@
 <h3><%= feature %></h3>
 
-<form action="<%= u("update") %>" method="post">
+<form action="<%= url_path("update") %>" method="post">
   <input type="hidden" name="feature" value="<%= feature %>" />
 
   <select name="percentage">
@@ -20,17 +20,7 @@
     <input type="text" name="users[]" value="<%= user %>" />
   <% end %>
 
-  <button id="add_user">Add User ID</button>
+  <button class="add_user">Add User ID</button>
 
   <input type="submit" value="Save" />
 </form>
-
-<script type="text/javascript">
-  document.getElementById("add_user").onclick = function() {
-    elem = document.createElement("input");
-    elem.setAttribute("type", "text");
-    elem.setAttribute("name", "users[]");
-    this.parentNode.insertBefore(elem, this);
-    return false;
-  };
-</script>

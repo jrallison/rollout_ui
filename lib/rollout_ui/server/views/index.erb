@@ -3,3 +3,12 @@
 <% RolloutUI::Feature.all.each do |feature| %>
   <%= partial :feature, :feature => feature %>
 <% end %>
+
+<script type="text/javascript">
+  $(function() {
+   $(".add_user").click(function(e) {
+     e.preventDefault();
+     $("<input type='text' name='users[]' />").insertBefore(this);
+   });
+  });
+</script>
