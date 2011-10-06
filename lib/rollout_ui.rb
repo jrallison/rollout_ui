@@ -1,5 +1,6 @@
 require 'redis'
 require 'rollout'
+require 'rollout_ui/monkey_patch'
 
 module RolloutUI
   autoload :Version, "rollout_ui/version"
