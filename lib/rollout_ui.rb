@@ -10,6 +10,7 @@ module RolloutUI
   def self.redis=(redis)
     @@redis = redis
   end
+
   def self.redis
     @@redis
   end
