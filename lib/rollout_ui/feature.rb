@@ -9,7 +9,7 @@ end
 
 class RolloutUI::Feature
   def self.all
-    RolloutUI.redis.smembers(:features)
+    RolloutUI.redis.smembers(:features) || []
   end
 
   def self.add(feature)

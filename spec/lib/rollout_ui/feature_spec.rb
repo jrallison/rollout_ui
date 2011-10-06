@@ -20,6 +20,10 @@ describe RolloutUI::Feature do
   end
 
   describe ".all" do
+    it "returns empty array if no features have been requested" do
+      RolloutUI::Feature.all.should == []
+    end
+
     it "should return all features that have been requested" do
       rollout.active?(:feature1, mock(:user, :id => 5))
       rollout.active?(:feature2, mock(:user, :id => 5))

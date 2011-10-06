@@ -23,6 +23,10 @@ describe RolloutUI::Group do
   end
 
   describe ".all" do
+    it "only returns the 'all' group if no groups have been defined" do
+      RolloutUI::Group.all.should == ["all"]
+    end
+
     it "should return all groups that have been defined" do
       rollout.define_group(:group1){ |user| true }
       rollout.define_group(:group2){ |user| true }

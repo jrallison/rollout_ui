@@ -9,7 +9,7 @@ end
 
 class RolloutUI::Group
   def self.all
-    RolloutUI.redis.smembers(:groups) << "all"
+    (RolloutUI.redis.smembers(:groups) || []) << "all"
   end
 
   def self.add(group)
