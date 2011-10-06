@@ -16,7 +16,7 @@
     <% end %>
   </select>
 
-  <% RolloutUI.redis.smembers("feature:#{feature}:users").each do |user| %>
+  <% (RolloutUI.redis.smembers("feature:#{feature}:users") || []).each do |user| %>
     <input type="text" name="users[]" value="<%= user %>" />
   <% end %>
 
