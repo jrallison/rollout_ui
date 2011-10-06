@@ -41,16 +41,15 @@ module RolloutUI
       end
     end
 
-    # to make things easier on ourselves
     get "/?" do
       response["Cache-Control"] = "max-age=0, private, must-revalidate"
-      erb :index, {:layout => true}
+      erb :index, { :layout => true }
     end
 
     post '/update' do
       feature = params["feature"]
-      rollout = Rollout.new(RolloutUI.redis)
 
+      rollout = Rollout.new(RolloutUI.redis)
       rollout.deactivate_all(feature)
 
       rollout.activate_percentage(feature, params["percentage"]) if params["percentage"]
@@ -63,7 +62,7 @@ module RolloutUI
         rollout.activate_user(feature, User.new(user)) unless user.empty?
       end
 
-      redirect u
+      redirect url_path
     end
   end
 end
