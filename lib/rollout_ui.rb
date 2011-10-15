@@ -2,17 +2,29 @@ require 'redis'
 require 'rollout'
 require 'rollout_ui/monkey_patch'
 
-module RolloutUI
+class RolloutUI
   autoload :Version, "rollout_ui/version"
-  autoload :Feature, "rollout_ui/feature"
-  autoload :Group,   "rollout_ui/group"
   autoload :Server,  "rollout_ui/server"
 
-  def self.redis=(redis)
-    @@redis = redis
+  def initialize(rollout)
+    @rollout = rollout
   end
 
-  def self.redis
-    @@redis
+  def groups
+    @rollout.instance_variable_get("@groups")
+  end
+
+  def add_feature(feature)
+    redis.sadd(:features, feature)
+  end
+
+  def features
+    redis.smembers(:features)
+  end
+
+private
+
+  def redis
+    @rollout.instance_variable_get("@redis")
   end
 end

@@ -6,7 +6,7 @@ if defined? Encoding
   Encoding.default_external = Encoding::UTF_8
 end
 
-module RolloutUI
+class RolloutUI
   User = Struct.new(:id)
 
   class RolloutUI::Server < Sinatra::Base
