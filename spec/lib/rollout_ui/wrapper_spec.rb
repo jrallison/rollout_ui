@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe RolloutUI do
+describe RolloutUI::Wrapper do
   before do
-    @rollout_ui = RolloutUI.new($rollout)
+    @rollout_ui = RolloutUI::Wrapper.new($rollout)
   end
 
   describe "#groups" do

@@ -2,29 +2,12 @@ require 'redis'
 require 'rollout'
 require 'rollout_ui/monkey_patch'
 
-class RolloutUI
-  autoload :Version, "rollout_ui/version"
-  autoload :Server,  "rollout_ui/server"
+# TODO: load the rails 3.1 mountable engine only on demand
+$:.unshift File.expand_path("rollout_ui/engine/lib", File.dirname(__FILE__))
+require 'rollout_ui/engine'
 
-  def initialize(rollout)
-    @rollout = rollout
-  end
-
-  def groups
-    @rollout.instance_variable_get("@groups")
-  end
-
-  def add_feature(feature)
-    redis.sadd(:features, feature)
-  end
-
-  def features
-    redis.smembers(:features)
-  end
-
-private
-
-  def redis
-    @rollout.instance_variable_get("@redis")
-  end
+module RolloutUI
+  autoload :Version, 'rollout_ui/version'
+  autoload :Wrapper, 'rollout_ui/wrapper'
+  autoload :Server,  'rollout_ui/server'
 end

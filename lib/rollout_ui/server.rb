@@ -6,10 +6,10 @@ if defined? Encoding
   Encoding.default_external = Encoding::UTF_8
 end
 
-class RolloutUI
+module RolloutUI
   User = Struct.new(:id)
 
-  class RolloutUI::Server < Sinatra::Base
+  class Server < Sinatra::Base
     dir = File.dirname(File.expand_path(__FILE__))
 
     set :views,  "#{dir}/server/views"

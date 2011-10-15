@@ -18,7 +18,10 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency('rollout')
 
   gem.add_development_dependency('rake')
-  gem.add_development_dependency('rspec')
+  gem.add_development_dependency('rails')
+  gem.add_development_dependency('mysql')
+  gem.add_development_dependency('rspec-rails')
+  gem.add_development_dependency('capybara')
   gem.add_development_dependency('rack-test')
   gem.add_development_dependency('redis-namespace')
 end
