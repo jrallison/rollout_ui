@@ -17,5 +17,6 @@ RSpec.configure do |config|
     $redis.del(*keys) unless keys.empty?
 
     $rollout = Rollout.new($redis)
+    RolloutUi.wrap($rollout)
   end
 end

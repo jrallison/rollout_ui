@@ -2,14 +2,20 @@ require 'spec_helper'
 
 describe RolloutUi::Wrapper do
   before do
-    @rollout_ui = RolloutUi::Wrapper.new($rollout)
+    @rollout_ui = RolloutUi::Wrapper.new
+  end
+
+  it "cannot be initialized without an instance of rollout if rollout hasn't been wrapped" do
+    RolloutUi.wrap(nil)
+
+    lambda { RolloutUi::Wrapper.new }.should raise_error(RolloutUi::Wrapper::NoRolloutInstance)
   end
 
   it "can be initialized with an instance of Rollout" do
     RolloutUi::Wrapper.new($rollout).should be_an_instance_of(RolloutUi::Wrapper)
   end
 
-  it "can be initialized without an instance of rollout if rollout instance has been set" do
+  it "can be initialized without an instance of rollout if rollout has been wrapped" do
     RolloutUi::Wrapper.new.should be_an_instance_of(RolloutUi::Wrapper)
   end
 

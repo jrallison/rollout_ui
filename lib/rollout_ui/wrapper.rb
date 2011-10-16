@@ -1,12 +1,12 @@
 module RolloutUi
   class Wrapper
-    class RequestFeatureBeforeInitializingWrapper < StandardError; end
+    class NoRolloutInstance < StandardError; end
 
     attr_reader :rollout
 
     def initialize(rollout = nil)
-      raise RequestFeatureBeforeInitializingWrapper unless rollout || @@rollout
-      rollout ? @@rollout = @rollout = rollout : @rollout = @@rollout
+      @rollout = rollout || RolloutUi.rollout
+      raise NoRolloutInstance unless @rollout
     end
 
     def groups
