@@ -1,11 +1,13 @@
-module RolloutUI
+module RolloutUi
   class Wrapper
-    def initialize(rollout)
-      @rollout = rollout
+    attr_reader :rollout
+
+    def initialize(rollout = @@rollout)
+      @@rollout = @rollout = rollout
     end
 
     def groups
-      @rollout.instance_variable_get("@groups")
+      rollout.instance_variable_get("@groups").keys
     end
 
     def add_feature(feature)
@@ -16,10 +18,8 @@ module RolloutUI
       redis.smembers(:features)
     end
 
-  private
-
     def redis
-      @rollout.instance_variable_get("@redis")
+      rollout.instance_variable_get("@redis")
     end
   end
 end

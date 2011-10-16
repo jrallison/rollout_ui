@@ -1,21 +1,21 @@
 require 'spec_helper'
 
-describe RolloutUI::Wrapper do
+describe RolloutUi::Wrapper do
   before do
-    @rollout_ui = RolloutUI::Wrapper.new($rollout)
+    @rollout_ui = RolloutUi::Wrapper.new($rollout)
   end
 
   describe "#groups" do
     it "returns all groups defined for the rollout instance" do
       $rollout.define_group(:beta_testers) { |user| user.beta_tester? }
 
-      @rollout_ui.groups.keys.should == ["all", "beta_testers"]
+      @rollout_ui.groups.should == ["all", "beta_testers"]
     end
 
     it "doesn't return other defined groups" do
       Rollout.new($redis).define_group(:beta_testers) { |user| user.beta_tester? }
 
-      @rollout_ui.groups.keys.should == ["all"]
+      @rollout_ui.groups.should == ["all"]
     end
   end
 

@@ -53,6 +53,7 @@ GEM
     i18n (0.6.0)
     json (1.6.1)
     json_pure (1.6.1)
+    launchy (2.0.3)
     mail (2.3.0)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -130,6 +131,7 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
+  launchy
   mysql
   rack-test
   rails

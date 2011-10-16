@@ -4,7 +4,7 @@ require "rollout_ui/version"
 
 Gem::Specification.new do |gem|
   gem.name          = "rollout_ui"
-  gem.version       = RolloutUI::Version
+  gem.version       = RolloutUi::Version
   gem.authors       = ["John Allison"]
   gem.email         = ["jrallison@gmail.com"]
   gem.description   = %q{A UI for James Golick's rollout gem}
@@ -22,6 +22,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency('mysql')
   gem.add_development_dependency('rspec-rails')
   gem.add_development_dependency('capybara')
+  gem.add_development_dependency('launchy')
   gem.add_development_dependency('rack-test')
   gem.add_development_dependency('redis-namespace')
 end

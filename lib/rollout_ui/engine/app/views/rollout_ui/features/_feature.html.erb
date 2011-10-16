@@ -1,0 +1,30 @@
+<div id="<%= feature.name %>" class="feature">
+  <h3><%= feature.name %></h3>
+
+  <%= form_tag feature_path(feature.name), :method => :put do %>
+    <select class="percentage" name="percentage">
+      <% 101.times do |i| %>
+        <option<%= " selected='selected'" if feature.percentage == i.to_s %>><%= i %></option>
+      <% end %>
+    </select>%
+
+    <select class="groups" name="groups[]" multiple="multiple">
+      <option value="">Select a group</option>
+      <% @wrapper.groups.each do |group| %>
+        <option<%= " selected='selected'" if feature.groups.include?(group) %>><%= group %></option>
+      <% end %>
+    </select>
+
+    <input type="text" name="users[]" value="" />
+
+    <% if feature.users.any? %>
+      <div id="user_ids"><%= feature.users.join(", ") %></div>
+
+      <% feature.users.each do |user| %>
+        <%= hidden_field_tag "users[]", user %>
+      <% end %>
+    <% end %>
+
+    <input type="submit" value="Save" />
+  <% end %>
+</div>

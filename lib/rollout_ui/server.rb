@@ -6,7 +6,7 @@ if defined? Encoding
   Encoding.default_external = Encoding::UTF_8
 end
 
-module RolloutUI
+module RolloutUi
   User = Struct.new(:id)
 
   class Server < Sinatra::Base
@@ -49,7 +49,7 @@ module RolloutUI
     post '/update' do
       feature = params["feature"]
 
-      rollout = Rollout.new(RolloutUI.redis)
+      rollout = Rollout.new(RolloutUi.redis)
       rollout.deactivate_all(feature)
 
       rollout.activate_percentage(feature, params["percentage"]) if params["percentage"] && params["percentage"].to_i > 0

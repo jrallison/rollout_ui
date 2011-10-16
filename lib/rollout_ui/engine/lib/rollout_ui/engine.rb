@@ -1,5 +1,5 @@
-module RolloutUI
+module RolloutUi
   class Engine < Rails::Engine
-    isolate_namespace RolloutUI
+    isolate_namespace RolloutUi
   end
 end

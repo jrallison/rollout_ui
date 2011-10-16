@@ -1,7 +1,7 @@
 <h2>Features</h2>
 
-<% RolloutUi::Feature.all.each do |feature| %>
-  <%= partial :feature, :feature => feature %>
+<% @features.each do |feature| %>
+  <%= render 'feature', :feature => feature %>
 <% end %>
 
 <script type="text/javascript">

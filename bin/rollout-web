@@ -11,7 +11,7 @@ end
 
 require 'rollout_ui'
 
-RolloutUI.redis = Redis.new
+RolloutUi.redis = Redis.new
 
 Vegas::Runner.new(RolloutUI::Server, 'rollout-web') do |runner, opts, app|
 end

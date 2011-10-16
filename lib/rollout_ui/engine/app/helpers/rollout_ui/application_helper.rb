@@ -1,4 +1,4 @@
-module RolloutUI
+module RolloutUi
   module ApplicationHelper
   end
 end

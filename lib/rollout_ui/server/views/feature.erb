@@ -5,18 +5,18 @@
 
   <select name="percentage">
     <% 101.times do |i| %>
-      <option<%= " selected='selected'" if RolloutUI.redis.get("feature:#{feature}:percentage").to_i == i %>><%= i %></option>
+      <option<%= " selected='selected'" if RolloutUi.redis.get("feature:#{feature}:percentage").to_i == i %>><%= i %></option>
     <% end %>
   </select>%
 
   <select name="groups[]" multiple="multiple">
     <option value="">Select a group</option>
-    <% RolloutUI::Group.all.each do |group| %>
-      <option<%= " selected='selected'" if RolloutUI.redis.sismember("feature:#{feature}:groups", group) %>><%= group %></option>
+    <% RolloutUi::Group.all.each do |group| %>
+      <option<%= " selected='selected'" if RolloutUi.redis.sismember("feature:#{feature}:groups", group) %>><%= group %></option>
     <% end %>
   </select>
 
-  <% (RolloutUI.redis.smembers("feature:#{feature}:users") || []).each do |user| %>
+  <% (RolloutUi.redis.smembers("feature:#{feature}:users") || []).each do |user| %>
     <input type="text" name="users[]" value="<%= user %>" />
   <% end %>
 
