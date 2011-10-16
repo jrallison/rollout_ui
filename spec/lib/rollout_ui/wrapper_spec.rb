@@ -5,6 +5,14 @@ describe RolloutUi::Wrapper do
     @rollout_ui = RolloutUi::Wrapper.new($rollout)
   end
 
+  it "can be initialized with an instance of Rollout" do
+    RolloutUi::Wrapper.new($rollout).should be_an_instance_of(RolloutUi::Wrapper)
+  end
+
+  it "can be initialized without an instance of rollout if rollout instance has been set" do
+    RolloutUi::Wrapper.new.should be_an_instance_of(RolloutUi::Wrapper)
+  end
+
   describe "#groups" do
     it "returns all groups defined for the rollout instance" do
       $rollout.define_group(:beta_testers) { |user| user.beta_tester? }

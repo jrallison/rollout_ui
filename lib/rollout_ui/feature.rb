@@ -19,7 +19,7 @@ module RolloutUi
       redis.smembers(group_key(name))
     end
 
-    def users
+    def user_ids
       redis.smembers(user_key(name))
     end
 
@@ -32,9 +32,9 @@ module RolloutUi
       groups.each { |group| rollout.activate_group(name, group) }
     end
 
-    def users=(users)
+    def user_ids=(ids)
       redis.del(user_key(name))
-      users.each { |user| rollout.activate_user(name, User.new(user)) unless user.empty? }
+      ids.each { |id| rollout.activate_user(name, User.new(id)) unless id.to_s.empty? }
     end
 
   private
