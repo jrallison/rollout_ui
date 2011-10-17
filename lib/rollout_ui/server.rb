@@ -39,28 +39,31 @@ module RolloutUi
       def path_prefix
         request.env['SCRIPT_NAME']
       end
+
+      def section(key, *args, &block)
+        @sections ||= Hash.new{ |k,v| k[v] = [] }
+        if block_given?
+          @sections[key] << block
+        else
+          @sections[key].inject(''){ |content, block| content << block.call(*args) } if @sections.keys.include?(key)
+        end
+      end
     end
 
     get "/?" do
+      @wrapper = RolloutUi::Wrapper.new
+      @features = @wrapper.features.map{ |feature| RolloutUi::Feature.new(feature) }
+
       response["Cache-Control"] = "max-age=0, private, must-revalidate"
       erb :index, { :layout => true }
     end
 
-    post '/update' do
-      feature = params["feature"]
+    post '/:feature/update' do
+      @feature = RolloutUi::Feature.new(params["feature"])
 
-      rollout = Rollout.new(RolloutUi.redis)
-      rollout.deactivate_all(feature)
-
-      rollout.activate_percentage(feature, params["percentage"]) if params["percentage"] && params["percentage"].to_i > 0
-
-      (params["groups"] || []).each do |group|
-        rollout.activate_group(feature, group)
-      end
-
-      (params["users"] || []).each do |user|
-        rollout.activate_user(feature, User.new(user)) unless user.empty?
-      end
+      @feature.percentage = params["percentage"] if params["percentage"]
+      @feature.groups     = params["groups"]     if params["groups"]
+      @feature.user_ids   = params["users"]      if params["users"]
 
       redirect url_path
     end

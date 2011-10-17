@@ -1,14 +1,5 @@
-<h2>Features</h2>
-
-<% RolloutUi::Feature.all.each do |feature| %>
-  <%= partial :feature, :feature => feature %>
-<% end %>
-
-<script type="text/javascript">
-  $(function() {
-   $(".add_user").click(function(e) {
-     e.preventDefault();
-     $("<input type='text' name='users[]' />").insertBefore(this);
-   });
-  });
-</script>
+<ul id="features">
+  <% @features.each do |feature| %>
+    <li id="<%= feature.name %>" class="feature clearfix"><%= partial 'feature', :feature => feature %></li>
+  <% end %>
+</ul>

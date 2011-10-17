@@ -1,26 +1,34 @@
-<h3><%= feature %></h3>
+<h2><%= feature.name %></h2>
 
-<form action="<%= url_path("update") %>" method="post">
-  <input type="hidden" name="feature" value="<%= feature %>" />
+<div class="col">
+<form accept-charset="UTF-8" action="<%= url_path("#{feature.name}/update") %>" class="percentage_form" data-remote="true" method="post">
+    <label>Percentage</label>
+    <select class="percentage" name="percentage">
+      <% 101.times do |i| %>
+        <option value="<%= i %>"<%= " selected='selected'" if feature.percentage == i.to_s %>><%= i %>%</option>
+      <% end %>
+    </select>
+    <input type="submit" value="Save" />
+  </form>
+</div>
 
-  <select name="percentage">
-    <% 101.times do |i| %>
-      <option<%= " selected='selected'" if RolloutUi.redis.get("feature:#{feature}:percentage").to_i == i %>><%= i %></option>
-    <% end %>
-  </select>%
+<div class="col">
+  <form accept-charset="UTF-8" action="<%= url_path("#{feature.name}/update") %>" class="groups_form" data-remote="true" method="post">
+    <label>Groups</label>
+    <select id="<%= feature.name %>_groups" class="groups" name="groups[]" multiple="multiple" data-placeholder="Choose a group">
+      <% @wrapper.groups.each do |group| %>
+        <option<%= " selected='selected'" if feature.groups.include?(group) %>><%= group %></option>
+      <% end %>
+    </select>
+    <input type="hidden" name="groups[]" value="" />
+    <input type="submit" value="Save" />
+  </form>
+</div>
 
-  <select name="groups[]" multiple="multiple">
-    <option value="">Select a group</option>
-    <% RolloutUi::Group.all.each do |group| %>
-      <option<%= " selected='selected'" if RolloutUi.redis.sismember("feature:#{feature}:groups", group) %>><%= group %></option>
-    <% end %>
-  </select>
-
-  <% (RolloutUi.redis.smembers("feature:#{feature}:users") || []).each do |user| %>
-    <input type="text" name="users[]" value="<%= user %>" />
-  <% end %>
-
-  <button class="add_user">Add User ID</button>
-
-  <input type="submit" value="Save" />
-</form>
+<div class="col">
+  <form accept-charset="UTF-8" action="<%= url_path("#{feature.name}/update") %>" class="users_form" data-remote="true" method="post">
+    <label>Add User ID</label>
+    <input class="users" type="text" name="users[]" value="<%= feature.user_ids.join(",") %>" data-placeholder="Enter User ID" />
+    <input type="submit" value="Save" />
+  </form>
+</div>

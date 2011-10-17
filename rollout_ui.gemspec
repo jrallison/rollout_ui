@@ -19,6 +19,8 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency('rake')
   gem.add_development_dependency('rails')
+  gem.add_development_dependency('sinatra')
+  gem.add_development_dependency('uglifier')
   gem.add_development_dependency('mysql')
   gem.add_development_dependency('rspec-rails')
   gem.add_development_dependency('capybara')
