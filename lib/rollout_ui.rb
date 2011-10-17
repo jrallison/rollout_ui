@@ -2,9 +2,10 @@ require 'redis'
 require 'rollout'
 require 'rollout_ui/monkey_patch'
 
-# TODO: load the rails 3.1 mountable engine only on demand
-$:.unshift File.expand_path("rollout_ui/engine/lib", File.dirname(__FILE__))
-require 'rollout_ui/engine'
+if defined?(Rails) && Rails::VERSION::STRING.to_f > 3.1
+  $:.unshift File.expand_path("rollout_ui/engine/lib", File.dirname(__FILE__))
+  require 'rollout_ui/engine'
+end
 
 module RolloutUi
   autoload :Version, 'rollout_ui/version'
