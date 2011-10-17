@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>RolloutUI</title>
-  <%= stylesheet_link_tag    "rollout_ui/application" %>
+  <head>
+    <title>RolloutUI</title>
+    <link href='http://fonts.googleapis.com/css?family=Ultra' rel='stylesheet' type='text/css'>
+    <%= stylesheet_link_tag "rollout_ui/application" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+    <div id="container">
+      <h1><%= image_tag "rollout_ui/rollout.png", :alt => "Rollout" %></h1>
+      <%= yield %>
+    </div>
+
+    <div id="footer">
+      <p>Powered by RolloutUi v<%= RolloutUi::Version %></p>
+    </div>
+  </body>
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
   <%= javascript_include_tag "rollout_ui/application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
 
-<%= yield %>
-
-</body>
+  <script type="text/javascript">
+    $(function() {
+      <%= yield :onready %>
+    });
+  </script>
 </html>

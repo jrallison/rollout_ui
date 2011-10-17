@@ -1,21 +1,27 @@
-<div id="<%= feature.name %>" class="feature">
-  <h3><%= feature.name %></h3>
+<h2><%= feature.name %></h2>
 
-  <%= form_tag feature_path(feature.name), :method => :put do %>
+<%= form_tag feature_path(feature.name), :method => :put do %>
+  <div class="col">
+    <label>Percentage</label>
     <select class="percentage" name="percentage">
       <% 101.times do |i| %>
-        <option<%= " selected='selected'" if feature.percentage == i.to_s %>><%= i %></option>
+        <option value="<%= i %>"<%= " selected='selected'" if feature.percentage == i.to_s %>><%= i %>%</option>
       <% end %>
-    </select>%
+    </select>
+  </div>
 
-    <select class="groups" name="groups[]" multiple="multiple">
-      <option value="">Select a group</option>
+  <div class="col">
+    <label>Groups</label>
+    <select id="<%= feature.name %>_groups" class="groups" name="groups[]" multiple="multiple" data-placeholder="Choose a group">
       <% @wrapper.groups.each do |group| %>
         <option<%= " selected='selected'" if feature.groups.include?(group) %>><%= group %></option>
       <% end %>
     </select>
+  </div>
 
-    <input type="text" name="users[]" value="" />
+  <div class="col">
+    <label>Add User ID</label>
+    <input class="add_user" type="text" name="users[]" value="" />
 
     <% if feature.user_ids.any? %>
       <div id="user_ids"><%= feature.user_ids.join(", ") %></div>
@@ -24,7 +30,7 @@
         <%= hidden_field_tag "users[]", id %>
       <% end %>
     <% end %>
+  </div>
 
-    <input type="submit" value="Save" />
-  <% end %>
-</div>
+  <input type="submit" value="Save" />
+<% end %>

@@ -1,14 +1,9 @@
-<h2>Features</h2>
+<ul id="features">
+  <% @features.each do |feature| %>
+    <li id="<%= feature.name %>" class="feature clearfix"><%= render 'feature', :feature => feature %></li>
+  <% end %>
+</ul>
 
-<% @features.each do |feature| %>
-  <%= render 'feature', :feature => feature %>
+<% content_for :onready do %>
+  $("select").chosen({no_results_text: "No groups matched"});
 <% end %>
-
-<script type="text/javascript">
-  $(function() {
-   $(".add_user").click(function(e) {
-     e.preventDefault();
-     $("<input type='text' name='users[]' />").insertBefore(this);
-   });
-  });
-</script>
