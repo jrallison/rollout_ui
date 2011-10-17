@@ -18,7 +18,7 @@ describe "Engine" do
       it "allows changing of the percentage" do
         visit "/rollout"
 
-        within("#featureA") do
+        within("#featureA .percentage_form") do
           select "100", :from => "percentage"
           click_button "Save"
         end
@@ -29,7 +29,7 @@ describe "Engine" do
       it "shows the selected percentage" do
         visit "/rollout"
 
-        within("#featureA") do
+        within("#featureA .percentage_form") do
           select "57", :from => "percentage"
           click_button "Save"
         end
@@ -47,7 +47,7 @@ describe "Engine" do
       it "allows selecting of groups" do
         visit "/rollout"
 
-        within("#featureA") do
+        within("#featureA .groups_form") do
           select "beta_testers", :from => "groups[]"
           click_button "Save"
         end
@@ -58,7 +58,7 @@ describe "Engine" do
       it "shows the selected groups" do
         visit "/rollout"
 
-        within("#featureA") do
+        within("#featureA .groups_form") do
           select "beta_testers", :from => "groups[]"
           click_button "Save"
         end
@@ -71,7 +71,7 @@ describe "Engine" do
       it "allows adding user ids" do
         visit "/rollout"
 
-        within("#featureA") do
+        within("#featureA .users_form") do
           fill_in "users[]", :with => 5
           click_button "Save"
         end
@@ -82,7 +82,7 @@ describe "Engine" do
       it "shows the selected percentage" do
         visit "/rollout"
 
-        within("#featureA") do
+        within("#featureA .users_form") do
           fill_in "users[]", :with => 5
           click_button "Save"
         end

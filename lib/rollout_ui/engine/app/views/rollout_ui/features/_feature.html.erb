@@ -1,28 +1,34 @@
 <h2><%= feature.name %></h2>
 
-<%= form_tag feature_path(feature.name), :method => :put, :remote => true do %>
-  <div class="col">
+<div class="col">
+  <%= form_tag feature_path(feature.name), :class => "percentage_form", :method => :put, :remote => true do %>
     <label>Percentage</label>
     <select class="percentage" name="percentage">
       <% 101.times do |i| %>
         <option value="<%= i %>"<%= " selected='selected'" if feature.percentage == i.to_s %>><%= i %>%</option>
       <% end %>
     </select>
-  </div>
+    <input type="submit" value="Save" />
+  <% end %>
+</div>
 
-  <div class="col">
+<div class="col">
+  <%= form_tag feature_path(feature.name), :class => "groups_form", :method => :put, :remote => true do %>
     <label>Groups</label>
     <select id="<%= feature.name %>_groups" class="groups" name="groups[]" multiple="multiple" data-placeholder="Choose a group">
       <% @wrapper.groups.each do |group| %>
         <option<%= " selected='selected'" if feature.groups.include?(group) %>><%= group %></option>
       <% end %>
     </select>
-  </div>
+    <%= hidden_field_tag "groups[]", "" %>
+    <input type="submit" value="Save" />
+  <% end %>
+</div>
 
-  <div class="col">
+<div class="col">
+  <%= form_tag feature_path(feature.name), :class => "users_form", :method => :put, :remote => true do %>
     <label>Add User ID</label>
     <input class="users" type="text" name="users[]" value="<%= feature.user_ids.join(",") %>" data-placeholder="Enter User ID" />
-  </div>
-
-  <input type="submit" value="Save" />
-<% end %>
+    <input type="submit" value="Save" />
+  <% end %>
+</div>

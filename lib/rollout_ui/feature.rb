@@ -29,7 +29,7 @@ module RolloutUi
 
     def groups=(groups)
       redis.del(group_key(name))
-      groups.each { |group| rollout.activate_group(name, group) }
+      groups.each { |group| rollout.activate_group(name, group) unless group.to_s.empty? }
     end
 
     def user_ids=(ids)

@@ -9,7 +9,7 @@ module RolloutUi
     def update
       @feature = RolloutUi::Feature.new(params[:id])
 
-      @feature.percentage = params["percentage"] if params["percentage"] && params["percentage"].to_i > 0
+      @feature.percentage = params["percentage"] if params["percentage"]
       @feature.groups     = params["groups"]     if params["groups"]
       @feature.user_ids   = params["users"]      if params["users"]
 
