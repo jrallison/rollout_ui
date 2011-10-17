@@ -21,15 +21,7 @@
 
   <div class="col">
     <label>Add User ID</label>
-    <input class="add_user" type="text" name="users[]" value="" />
-
-    <% if feature.user_ids.any? %>
-      <div id="user_ids"><%= feature.user_ids.join(", ") %></div>
-
-      <% feature.user_ids.each do |id| %>
-        <%= hidden_field_tag "users[]", id %>
-      <% end %>
-    <% end %>
+    <input class="users" type="text" name="users[]" value="<%= feature.user_ids.join(",") %>" data-placeholder="Enter User ID" />
   </div>
 
   <input type="submit" value="Save" />

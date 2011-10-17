@@ -4,6 +4,10 @@ body {
   color: #aeaeae;
 }
 
+h1 img {
+  height: 75px;
+}
+
 /* For modern browsers */
 .clearfix:before,
 .clearfix:after {
@@ -69,28 +73,13 @@ body {
 }
 
 #features .feature select,
-#features .feature .add_user {
+#features .feature .users {
   line-height: 26px;
 }
 
-#features .feature .add_user {
+#features .feature .users {
   width: 172px;
-  font-size: 13px;
-  line-height: 26px;
-  color: #444;
-  background-color: #fff;
-  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.85, white), color-stop(0.99, #eeeeee));
-  background-image: -webkit-linear-gradient(center bottom, white 85%, #eeeeee 99%);
-  background-image: -moz-linear-gradient(center bottom, white 85%, #eeeeee 99%);
-  background-image: -o-linear-gradient(bottom, white 85%, #eeeeee 99%);
-  background-image: -ms-linear-gradient(top, #ffffff 85%,#eeeeee 99%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eeeeee',GradientType=0 );
-  background-image: linear-gradient(top, #ffffff 85%,#eeeeee 99%);
-  border: 1px solid #AAA;
-  -webkit-border-radius: 4px;
-  -moz-border-radius:    4px;
-  border-radius:         4px;
-  padding: 0 0 0 5px;
+  line-height: 27px;
 }
 
 #features .feature .percentage {
@@ -115,5 +104,5 @@ body {
   font-size: 16px;
   text-align: center;
   color: #f4b71d;
-  text-shadow: 0 1px 2px rgba(0,0,0,1);
+  text-shadow: 0 -1px 2px rgba(0,0,0,1);
 }

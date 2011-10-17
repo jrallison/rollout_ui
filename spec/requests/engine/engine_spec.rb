@@ -87,9 +87,7 @@ describe "Engine" do
           click_button "Save"
         end
 
-        within("#featureA #user_ids") do
-          page.should have_content("5")
-        end
+        page.should have_css("input.users[value='5']")
       end
     end
   end
