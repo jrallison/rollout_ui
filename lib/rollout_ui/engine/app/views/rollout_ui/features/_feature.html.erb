@@ -1,6 +1,6 @@
 <h2><%= feature.name %></h2>
 
-<%= form_tag feature_path(feature.name), :method => :put do %>
+<%= form_tag feature_path(feature.name), :method => :put, :remote => true do %>
   <div class="col">
     <label>Percentage</label>
     <select class="percentage" name="percentage">
