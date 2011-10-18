@@ -23,7 +23,7 @@ Add it to your gemfile:
 
     gem "rollout_ui"
 
-Wrap your rollout instance in the console:
+Wrap your rollout instance:
 
     $rollout = Rollout.new($redis)
     RolloutUi.wrap($rollout)
