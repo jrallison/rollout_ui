@@ -1,17 +1,17 @@
 RolloutUI: A user interface for James Golick's rollout gem
 ==========================================================
 
-It looks something like this:
------------------------------
-
-![RolloutUI](https://img.skitch.com/20111018-kyqx954fxeny9tbjf6q3n7pymi.jpg)
-
 What does it do?
 ----------------
 
 It auto-detects rollout features you use in your application
 and allows you to roll them out through a nice interface rather
 than digging around in the console or modifying redis directly.
+
+It looks something like this:
+-----------------------------
+
+![RolloutUI](https://img.skitch.com/20111018-kyqx954fxeny9tbjf6q3n7pymi.jpg)
 
 Installing RolloutUI
 --------------------
