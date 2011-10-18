@@ -1,12 +1,11 @@
-RolloutUI: A user interface for James Golick's rollout gem
+RolloutUI: A slick way to rollout features in your web app.
 ==========================================================
 
 What does it do?
 ----------------
 
-It auto-detects rollout features you use in your application
-and allows you to roll them out through a nice interface rather
-than digging around in the console or modifying redis directly.
+RolloutUI provides a user interface to James Golick's [rollout](https://github.com/jamesgolick/rollout). RolloutUI auto-detects features defined in rollout in your application
+and allows you to roll them out through a nice interface rather than digging around in the console or modifying redis directly.
 
 It looks something like this:
 -----------------------------
@@ -16,11 +15,15 @@ It looks something like this:
 Installing RolloutUI
 --------------------
 
-Add to your gemfile:
+First, get [rollout](https://github.com/jamesgolick/rollout) set up and running on your app and define at least one feature.
+
+Then you're ready to use RolloutUI.
+
+Add it to your gemfile:
 
     gem "rollout_ui"
 
-Wrap your rollout instance:
+Wrap your rollout instance in the console:
 
     $rollout = Rollout.new($redis)
     RolloutUi.wrap($rollout)
