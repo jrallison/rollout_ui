@@ -5,7 +5,7 @@ What does it do?
 ----------------
 
 RolloutUI provides a user interface to James Golick's [rollout](https://github.com/jamesgolick/rollout). RolloutUI auto-detects features defined in rollout in your application
-and allows you to roll them out through a nice interface rather than digging around in the console or modifying redis directly.
+and allows you to release them to groups, users or a percentage of your userbase through a nice interface rather than digging around in the console or modifying redis directly.
 
 It looks something like this:
 -----------------------------
