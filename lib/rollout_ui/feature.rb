@@ -4,8 +4,6 @@ module RolloutUi
 
     attr_reader :name
 
-    delegate :percentage_key, :group_key, :user_key, :to => :rollout
-
     def initialize(name)
       @wrapper = Wrapper.new
       @name = name
@@ -46,5 +44,11 @@ module RolloutUi
     def rollout
       @wrapper.rollout
     end
+
+    [:percentage_key, :group_key, :user_key].each do |method_name|
+      define_method(method_name) {|name| rollout.send(method_name, name)}
+    end
+
+
   end
 end
