@@ -46,7 +46,9 @@ describe RolloutUi::Feature do
   describe "#users=" do
     it "sets the activated users for the feature" do
       @feature.user_ids = [5, "7", ""]
-      RolloutUi::Feature.new(:featureA).user_ids.should == ["5", "7"]
+      RolloutUi::Feature.new(:featureA).user_ids.length.should == 2
+      RolloutUi::Feature.new(:featureA).user_ids.should include("5") 
+      RolloutUi::Feature.new(:featureA).user_ids.should include("7") 
     end
   end
 end
