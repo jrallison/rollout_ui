@@ -16,6 +16,12 @@ module RolloutUi
       redirect_to features_path
     end
 
+    def create
+      @wrapper.add_feature(params[:feature][:name])
+
+      redirect_to root_path
+    end
+
   private
 
     def wrapper
