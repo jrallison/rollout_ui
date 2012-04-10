@@ -13,6 +13,10 @@ describe RolloutUi::Feature do
       $rollout.activate_percentage(:featureA, 75)
       @feature.percentage.should == "75"
     end
+
+    it "returns 0% if there is no percentage set for the feature" do
+      @feature.percentage.should == 0
+    end
   end
 
   describe "#percentage=" do
@@ -47,8 +51,8 @@ describe RolloutUi::Feature do
     it "sets the activated users for the feature" do
       @feature.user_ids = [5, "7", ""]
       RolloutUi::Feature.new(:featureA).user_ids.length.should == 2
-      RolloutUi::Feature.new(:featureA).user_ids.should include("5") 
-      RolloutUi::Feature.new(:featureA).user_ids.should include("7") 
+      RolloutUi::Feature.new(:featureA).user_ids.should include("5")
+      RolloutUi::Feature.new(:featureA).user_ids.should include("7")
     end
   end
 end

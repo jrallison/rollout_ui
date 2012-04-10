@@ -10,7 +10,7 @@ module RolloutUi
     end
 
     def percentage
-      redis.get(percentage_key(name))
+      redis.get(percentage_key(name)) || 0
     end
 
     def groups
