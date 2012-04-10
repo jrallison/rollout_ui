@@ -7,7 +7,7 @@ describe RolloutUi::FeaturesController do
     it 'creates a feature' do
       wrapper.features.should be_empty
 
-      post :create, :feature => {:name => 'featureA' }, :use_route => :rollout
+      post :create, :name => 'featureA', :use_route => :rollout
 
       wrapper.features.should include 'featureA'
     end

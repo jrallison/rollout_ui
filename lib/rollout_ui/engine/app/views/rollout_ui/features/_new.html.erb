@@ -1,0 +1,4 @@
+<%= form_tag(features_path, :id => 'create-new-feature') do %>
+  <%= text_field_tag :name, :id => 'new-feature-name', :placeholder => 'Add a new feature' %>
+  <%= submit_tag 'Create', :id => 'new-feature-submit' %>
+<% end %>

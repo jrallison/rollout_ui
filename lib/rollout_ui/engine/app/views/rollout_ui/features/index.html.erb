@@ -1,3 +1,5 @@
+<%= render 'rollout_ui/features/new' %>
+
 <ul id="features">
   <% @features.each do |feature| %>
     <li id="<%= feature.name %>" class="feature clearfix"><%= render 'feature', :feature => feature %></li>

@@ -1,3 +1,5 @@
+<%= partial 'new' %>
+
 <ul id="features">
   <% @features.each do |feature| %>
     <li id="<%= feature.name %>" class="feature clearfix"><%= partial 'feature', :feature => feature %></li>

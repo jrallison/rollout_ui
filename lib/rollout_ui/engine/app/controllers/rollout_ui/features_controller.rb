@@ -17,9 +17,9 @@ module RolloutUi
     end
 
     def create
-      @wrapper.add_feature(params[:feature][:name])
+      @wrapper.add_feature(params[:name]) unless params[:name].blank?
 
-      redirect_to root_path
+      redirect_to features_path
     end
 
   private
