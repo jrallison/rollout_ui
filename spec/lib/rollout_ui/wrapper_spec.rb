@@ -51,6 +51,15 @@ describe RolloutUi::Wrapper do
 
       @rollout_ui.features.should == ["featureA"]
     end
+
+    it "lists features in alphabetical order" do
+      $rollout.active?(:zFeature, mock(:user, :id => 1))
+      $rollout.active?(:featureA, mock(:user, :id => 5))
+      $rollout.active?(:featureB, mock(:user, :id => 6))
+      $rollout.active?(:anotherFeature, mock(:user, :id => 8))
+
+      @rollout_ui.features.should == %w(anotherFeature featureA featureB zFeature)
+    end
   end
 
   describe "#add_feature" do
