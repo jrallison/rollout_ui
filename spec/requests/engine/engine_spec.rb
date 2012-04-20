@@ -90,6 +90,20 @@ describe "Engine" do
         page.should have_css("input.users[value='5']")
       end
     end
+
+    describe "order" do
+      before do
+        $rollout.active?(:featureB, user)
+        $rollout.active?(:anotherFeature, user)
+      end
+
+      it "shows features in alphabetical order" do
+        visit "/rollout"
+
+        elements = %w(anotherFeature featureA featureB)
+        page.body.should =~ Regexp.new("#{elements.join('.*')}.*", Regexp::MULTILINE)
+      end
+    end
   end
 end
 
