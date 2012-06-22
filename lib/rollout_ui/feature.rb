@@ -14,11 +14,11 @@ module RolloutUi
     end
 
     def groups
-      redis.smembers(group_key(name))
+      redis.smembers(group_key(name)) || []
     end
 
     def user_ids
-      redis.smembers(user_key(name))
+      redis.smembers(user_key(name)) || []
     end
 
     def percentage=(percentage)
