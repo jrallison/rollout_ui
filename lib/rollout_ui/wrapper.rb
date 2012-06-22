@@ -18,7 +18,8 @@ module RolloutUi
     end
 
     def features
-      redis.smembers(:features).sort
+      features = redis.smembers(:features)
+      features ? features.sort : []
     end
 
     def redis
