@@ -23,6 +23,12 @@ describe RolloutUi::Feature do
   end
 
   describe "#groups" do
+
+    it "returns an empty array when there are no activated groups for the feature" do
+      $redis.del('feature:featureA:groups')
+      @feature.groups.should == []
+    end
+
     it "returns the activated groups for the feature" do
       $rollout.activate_group(:featureA, :beta_testers)
       @feature.groups.should == ["beta_testers"]
@@ -37,6 +43,11 @@ describe RolloutUi::Feature do
   end
 
   describe "#users" do
+    it "returns an empty array when there are no activated users for the feature" do
+      $redis.del('=feature:featureA:users')
+      @feature.user_ids.should == []
+    end
+
     it "returns the activated users for the feature" do
       $rollout.activate_user(:featureA, mock(:user, :id => 5))
       @feature.user_ids.should == ["5"]
