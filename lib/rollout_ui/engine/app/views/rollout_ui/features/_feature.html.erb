@@ -27,8 +27,8 @@
 
 <div class="col">
   <%= form_tag feature_path(feature), :class => "users_form", :method => :put, :remote => true do %>
-    <label>Add User ID</label>
-    <input class="users" type="text" name="users[]" value="<%= feature.user_ids.join(",") %>" data-placeholder="Enter User ID" />
+    <label>Add User by <%= RolloutUi.user_name_field %></label>
+    <input class="users" type="text" name="user_names[]" value="<%= feature.user_names.join(",") %>" data-placeholder="Enter User <%= RolloutUi.user_name_field %>" />
     <input type="submit" value="Save" />
   <% end %>
 </div>

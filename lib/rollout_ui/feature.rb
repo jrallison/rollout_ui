@@ -39,6 +39,14 @@ module RolloutUi
       ids.each { |id| rollout.activate_user(name, User.new(id)) unless id.to_s.empty? }
     end
 
+    def user_names
+      RolloutUi.find_user_names(user_ids)
+    end
+
+    def user_names=(user_names)
+      self.user_ids = RolloutUi.find_user_ids(user_names)
+    end
+
   private
 
     def redis
