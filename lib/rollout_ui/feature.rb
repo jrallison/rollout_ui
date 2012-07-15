@@ -9,6 +9,10 @@ module RolloutUi
       @name = name
     end
 
+    def to_param
+      name
+    end
+
     def percentage
       redis.get(percentage_key(name))
     end
