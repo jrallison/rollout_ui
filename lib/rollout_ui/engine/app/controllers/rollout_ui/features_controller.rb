@@ -1,5 +1,5 @@
 module RolloutUi
-  class FeaturesController < ApplicationController
+  class FeaturesController < RolloutUi::ApplicationController
     before_filter :wrapper, :only => [:index]
 
     def index
