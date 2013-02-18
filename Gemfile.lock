@@ -1,8 +1,9 @@
 PATH
   remote: .
   specs:
-    rollout_ui (0.2.0)
-      rollout (~> 1.1.0)
+    rollout_ui (0.2.1)
+      rollout
+      rollout_ui
 
 GEM
   remote: http://rubygems.org/
@@ -51,8 +52,14 @@ GEM
     execjs (1.2.4)
       multi_json (~> 1.0)
     ffi (1.0.9)
+    git (1.2.5)
     hike (1.2.1)
     i18n (0.6.0)
+    jeweler (1.8.4)
+      bundler (~> 1.0)
+      git (>= 1.2.5)
+      rake
+      rdoc
     json (1.6.1)
     json_pure (1.6.1)
     launchy (2.0.3)
@@ -95,7 +102,8 @@ GEM
     redis (2.2.2)
     redis-namespace (1.0.3)
       redis (< 3.0.0)
-    rollout (1.1.0)
+    rollout (1.2.0)
+      redis
     rspec (2.6.0)
       rspec-core (~> 2.6.0)
       rspec-expectations (~> 2.6.0)
@@ -139,12 +147,14 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
+  jeweler
   launchy
   mysql
   rack-test
   rails
   rake
   redis-namespace
+  rollout
   rollout_ui!
   rspec-rails
   sinatra
