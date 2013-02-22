@@ -2,11 +2,10 @@ require 'redis'
 require 'rollout'
 require 'rollout_ui/monkey_patch'
 
-# Hack so we only load the engine when Rails will support it.
-# TODO: find a better way
 if defined?(Rails) && Rails::VERSION::STRING.to_f >= 3.1
+  # Hack so that if the Engine is ever required, it's
+  # able to find it's assets, etc. TODO: find a better way
   $:.unshift File.expand_path("rollout_ui/engine/lib", File.dirname(__FILE__))
-  require 'rollout_ui/engine'
 end
 
 module RolloutUi

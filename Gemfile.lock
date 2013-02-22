@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     rollout_ui (0.2.0)
-      rollout (~> 1.1.0)
+      rollout (~> 1.1)
 
 GEM
   remote: http://rubygems.org/
@@ -95,7 +95,8 @@ GEM
     redis (2.2.2)
     redis-namespace (1.0.3)
       redis (< 3.0.0)
-    rollout (1.1.0)
+    rollout (1.2.0)
+      redis
     rspec (2.6.0)
       rspec-core (~> 2.6.0)
       rspec-expectations (~> 2.6.0)

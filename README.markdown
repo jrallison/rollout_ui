@@ -30,6 +30,10 @@ Wrap your rollout instance:
 
 ### Rails 3.1
 
+In your `application.rb` file, require the rollout engine:
+
+    require "rollout_ui/engine"
+
 Mount the Rails engine in your routes.rb file:
 
     mount RolloutUi::Engine => "/rollout"
