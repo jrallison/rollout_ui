@@ -31,14 +31,14 @@ describe RolloutUi::Feature do
 
     it "returns the activated groups for the feature" do
       $rollout.activate_group(:featureA, :beta_testers)
-      @feature.groups.should == ["beta_testers"]
+      @feature.groups.should == [:beta_testers]
     end
   end
 
   describe "#groups=" do
     it "sets the activated groups for the feature" do
       @feature.groups = ["all", "admins"]
-      RolloutUi::Feature.new(:featureA).groups.should == ["admins", "all"]
+      RolloutUi::Feature.new(:featureA).groups.should =~ [:admins, :all]
     end
   end
 
