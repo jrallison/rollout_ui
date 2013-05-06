@@ -26,10 +26,12 @@ module RolloutUi
     end
 
     def groups=(groups)
+      self.groups.each { |group| rollout.deactivate_group(name, group) }
       groups.each { |group| rollout.activate_group(name, group) unless group.to_s.empty? }
     end
 
     def user_ids=(ids)
+      self.user_ids.each { |id| rollout.deactivate_user(name, User.new(id)) unless id.to_s.empty? }
       ids.each { |id| rollout.activate_user(name, User.new(id)) unless id.to_s.empty? }
     end
 
