@@ -23,7 +23,7 @@ module RolloutUi
     end
 
     def redis
-      rollout.instance_variable_get("@redis")
+      rollout.instance_variable_get("@storage")
     end
   end
 end
