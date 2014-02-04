@@ -1,4 +1,15 @@
-<h2><%= feature.name %></h2>
+<h2>
+  <%= feature.name %>
+  <% if defined?(current_user) && current_user %>
+    <div style="float:right;">
+      <% if feature.user_ids.include?(current_user.id.to_s) %>
+        <%= link_to 'Remove Me', feature_current_user_path(feature.name), method: :delete %>
+      <% else %>
+        <%= link_to 'Add Me', feature_current_user_path(feature.name), method: :post %>
+      <% end %>
+    </div>
+  <% end %>
+</h2>
 
 <div class="col">
   <%= form_tag feature_path(feature.name), :class => "percentage_form", :method => :put, :remote => true do %>
