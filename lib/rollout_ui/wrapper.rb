@@ -1,6 +1,6 @@
 module RolloutUi
   class Wrapper
-    class NoRolloutInstance < StandardError; end
+    class NoRolloutInstance < ArgumentError; end
 
     attr_reader :rollout
 

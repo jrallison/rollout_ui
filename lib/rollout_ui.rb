@@ -21,4 +21,36 @@ module RolloutUi
   def self.rollout
     @@rollout
   end
+
+  def self.find_users_by(field)
+    @@user_name_field = field
+  end
+
+  def self.user_name_field
+    @@user_name_field ||= :id
+  end
+
+  def self.user_class=(user_class)
+    @@user_class = user_class
+  end
+
+  def self.user_class
+    @@user_class ||= User
+  end
+
+  def self.find_user_names(user_ids)
+    if @@user_name_field && user_ids.present?
+      user_class.where(id: user_ids).pluck(@@user_name_field)
+    else
+      user_ids
+    end
+  end
+
+  def self.find_user_ids(user_identifiers)
+    if @@user_name_field && user_identifiers.present?
+      user_class.where(@@user_name_field => user_identifiers).pluck(:id)
+    else
+      user_identifiers
+    end
+  end
 end

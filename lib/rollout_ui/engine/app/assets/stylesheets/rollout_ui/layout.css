@@ -60,12 +60,7 @@ h1 img {
   letter-spacing: 1px;
 }
 
-#features .feature .groups {
-  height: 1.5em;
-}
-
 #features .feature label {
-  float: left;
   font-size: 14px;
   line-height: 2em;
   color: #fcc334;
@@ -88,6 +83,7 @@ h1 img {
 
 #features .feature .groups {
   width: 213px;
+  height: 1.5em;
 }
 
 #features .feature .chzn-container-multi .chzn-choices {

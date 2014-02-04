@@ -9,6 +9,10 @@ module RolloutUi
       @name = name.to_sym
     end
 
+    def to_param
+      name
+    end
+
     def percentage
       rollout.get(feature_for(name)).percentage.to_s
     end
@@ -33,6 +37,14 @@ module RolloutUi
     def user_ids=(ids)
       self.user_ids.each { |id| rollout.deactivate_user(name, User.new(id)) unless id.to_s.empty? }
       ids.each { |id| rollout.activate_user(name, User.new(id)) unless id.to_s.empty? }
+    end
+
+    def user_names
+      RolloutUi.find_user_names(user_ids)
+    end
+
+    def user_names=(user_names)
+      self.user_ids = RolloutUi.find_user_ids(user_names)
     end
 
   private

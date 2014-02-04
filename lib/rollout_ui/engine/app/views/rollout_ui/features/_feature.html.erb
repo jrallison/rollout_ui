@@ -1,7 +1,7 @@
 <h2><%= feature.name %></h2>
 
 <div class="col">
-  <%= form_tag feature_path(feature.name), :class => "percentage_form", :method => :put, :remote => true do %>
+  <%= form_tag feature_path(feature), :class => "percentage_form", :method => :put, :remote => true do %>
     <label>Percentage</label>
     <select class="percentage" name="percentage">
       <% 101.times do |i| %>
@@ -13,7 +13,7 @@
 </div>
 
 <div class="col">
-  <%= form_tag feature_path(feature.name), :class => "groups_form", :method => :put, :remote => true do %>
+  <%= form_tag feature_path(feature), :class => "groups_form", :method => :put, :remote => true do %>
     <label>Groups</label>
     <select id="<%= feature.name %>_groups" class="groups" name="groups[]" multiple="multiple" data-placeholder="Choose a group">
       <% @wrapper.groups.each do |group| %>
@@ -26,9 +26,9 @@
 </div>
 
 <div class="col">
-  <%= form_tag feature_path(feature.name), :class => "users_form", :method => :put, :remote => true do %>
-    <label>Add User ID</label>
-    <input class="users" type="text" name="users[]" value="<%= feature.user_ids.join(",") %>" data-placeholder="Enter User ID" />
+  <%= form_tag feature_path(feature), :class => "users_form", :method => :put, :remote => true do %>
+    <label>Add User by <%= RolloutUi.user_name_field %></label>
+    <input class="users" type="text" name="user_names[]" value="<%= feature.user_names.join(",") %>" data-placeholder="Enter User <%= RolloutUi.user_name_field %>" />
     <input type="submit" value="Save" />
   <% end %>
 </div>
