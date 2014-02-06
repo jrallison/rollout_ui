@@ -5,6 +5,13 @@
     <link href='//fonts.googleapis.com/css?family=Ultra' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag "rollout_ui/application" %>
     <%= csrf_meta_tags %>
+    <% if (defined?(Rails) && Rails.env.production?) || ENV['RACK_ENV'].to_s.downcase == 'production' -%>
+    <style type="text/css">
+      body {
+        background: #700f00 url(/assets/rollout_ui/red_brick_wall.png);
+      }
+    </style>
+    <% end -%>
   </head>
 
   <body>
