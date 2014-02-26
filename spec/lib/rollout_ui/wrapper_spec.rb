@@ -34,39 +34,31 @@ describe RolloutUi::Wrapper do
   end
 
   describe "#features" do
-    it "returns an empty array if no features have been requested" do
+    it "returns an empty array if no features have been set" do
       @rollout_ui.features.should == []
     end
 
-    it "returns all features that have been requested" do
-      $rollout.active?(:featureA, mock(:user, :id => 5))
-      $rollout.active?(:featureB, mock(:user, :id => 6))
+    it "returns all features that have been set" do
+      $rollout.activate_user(:featureA, mock(:user, :id => 5))
+      $rollout.activate_user(:featureB, mock(:user, :id => 6))
 
-      @rollout_ui.features.should == ["featureA", "featureB"]
+      @rollout_ui.features.should == [:featureA, :featureB]
     end
 
     it "lists each feature only once" do
-      $rollout.active?(:featureA, mock(:user, :id => 5))
-      $rollout.active?(:featureA, mock(:user, :id => 6))
+      $rollout.activate_user(:featureA, mock(:user, :id => 5))
+      $rollout.activate_user(:featureA, mock(:user, :id => 6))
 
-      @rollout_ui.features.should == ["featureA"]
+      @rollout_ui.features.should == [:featureA]
     end
 
     it "lists features in alphabetical order" do
-      $rollout.active?(:zFeature, mock(:user, :id => 1))
-      $rollout.active?(:featureA, mock(:user, :id => 5))
-      $rollout.active?(:featureB, mock(:user, :id => 6))
-      $rollout.active?(:anotherFeature, mock(:user, :id => 8))
+      $rollout.activate_user(:zFeature, mock(:user, :id => 1))
+      $rollout.activate_user(:featureA, mock(:user, :id => 5))
+      $rollout.activate_user(:featureB, mock(:user, :id => 6))
+      $rollout.activate_user(:anotherFeature, mock(:user, :id => 8))
 
-      @rollout_ui.features.should == %w(anotherFeature featureA featureB zFeature)
-    end
-  end
-
-  describe "#add_feature" do
-    it "adds feature to the list of features" do
-      @rollout_ui.add_feature(:featureA)
-
-      @rollout_ui.features.should == ["featureA"]
+      @rollout_ui.features.should == [:anotherFeature, :featureA, :featureB, :zFeature]
     end
   end
 end

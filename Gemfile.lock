@@ -8,7 +8,7 @@ GIT
 PATH
   remote: .
   specs:
-    rollout_ui (0.2.0)
+    rollout_ui (0.3.0)
       rollout
 
 GEM
