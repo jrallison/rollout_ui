@@ -5,7 +5,7 @@ describe "Engine" do
     let(:user) { mock(:user, :id => 5) }
 
     before do
-      $rollout.active?(:featureA, user)
+      $rollout.activate_user(:featureA, user)
     end
 
     it "shows requested rollout features" do
@@ -93,8 +93,8 @@ describe "Engine" do
 
     describe "order" do
       before do
-        $rollout.active?(:featureB, user)
-        $rollout.active?(:anotherFeature, user)
+        $rollout.activate_user(:featureB, user)
+        $rollout.activate_user(:anotherFeature, user)
       end
 
       it "shows features in alphabetical order" do
