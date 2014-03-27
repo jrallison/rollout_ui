@@ -71,7 +71,7 @@ describe RolloutUi::Wrapper do
   end
 
   describe "#remove_feature" do
-    it "adds feature to the list of features" do
+    it "removes a feature from the list of features" do
       @rollout_ui.add_feature(:feature)
 
       @rollout_ui.remove_feature(:feature)
