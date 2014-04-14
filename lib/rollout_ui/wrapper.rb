@@ -3,6 +3,7 @@ module RolloutUi
     class NoRolloutInstance < StandardError; end
 
     attr_reader :rollout
+    delegate :features, to: :rollout
 
     def initialize(rollout = nil)
       @rollout = rollout || RolloutUi.rollout
@@ -15,11 +16,6 @@ module RolloutUi
 
     def add_feature(feature)
       redis.sadd(:features, feature)
-    end
-
-    def features
-      features = redis.smembers(:features)
-      features ? features.sort : []
     end
 
     def redis
