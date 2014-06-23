@@ -62,6 +62,20 @@ describe RolloutUi::Wrapper do
     end
   end
 
+  describe "#feature_exists?" do
+    it "returns false if a feature doesn't exist" do
+      $rollout.active?(:featureA, mock(:user, :id => 1))
+
+      @rollout_ui.feature_exists?(:unexistingFeature).should eq false
+    end
+
+    it "returns true if a feature exists" do
+      $rollout.active?(:featureA, mock(:user, :id => 2))
+
+      @rollout_ui.feature_exists?(:featureA).should eq true
+    end
+  end
+
   describe "#add_feature" do
     it "adds feature to the list of features" do
       @rollout_ui.add_feature(:featureA)
