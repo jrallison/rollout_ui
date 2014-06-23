@@ -7,6 +7,6 @@ class Rollout
   end
 
   def ui_wrapper
-    RolloutUi::Wrapper.new(self)
+    @_wrapper ||= RolloutUi::Wrapper.new(self)
   end
 end
