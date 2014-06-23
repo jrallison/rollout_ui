@@ -22,6 +22,10 @@ module RolloutUi
       features ? features.sort : []
     end
 
+    def feature_exists?(feature)
+      features.include?(feature.to_s)
+    end
+
     def redis
       rollout.instance_variable_get("@storage")
     end
