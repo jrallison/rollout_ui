@@ -1,4 +1,12 @@
-<h2><%= feature.name %></h2>
+<header class="feature-header">
+  <h2><%= feature.name %></h2>
+
+  <nav>
+    <%= form_tag feature_path(feature.name), method: :delete do %>
+      <button>remove</button>
+    <% end %>
+  </nav>
+</header>
 
 <div class="col">
   <%= form_tag feature_path(feature.name), :class => "percentage_form", :method => :put, :remote => true do %>
