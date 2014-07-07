@@ -17,6 +17,10 @@ module RolloutUi
       redis.sadd(:features, feature)
     end
 
+    def remove_feature(feature)
+      redis.srem(:features, feature)
+    end
+
     def features
       features = redis.smembers(:features)
       features ? features.sort : []
