@@ -116,6 +116,19 @@ describe "Engine" do
         page.body.should =~ Regexp.new("#{elements.join('.*')}.*", Regexp::MULTILINE)
       end
     end
+
+    describe "adding a feature" do
+      it "displays the added feature in the UI" do
+        visit "/rollout"
+
+        within(".add-feature") do
+          fill_in "name", with: "featureB"
+          click_button "Add Feature"
+        end
+
+        page.should have_content("featureB")
+      end
+    end
   end
 end
 

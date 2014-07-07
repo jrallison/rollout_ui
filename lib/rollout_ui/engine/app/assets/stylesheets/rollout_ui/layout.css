@@ -30,6 +30,10 @@ h1 img {
   padding: 0 25px;
 }
 
+.add-feature {
+  margin: 30px 0;
+}
+
 #container {
   width: 960px;
   margin: 0 auto;
