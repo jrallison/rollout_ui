@@ -1,3 +1,10 @@
+<div class="add-feature">
+  <%= form_tag "/rollout/features" do %>
+    <input name="name"></input>
+    <button>Add Feature</button>
+  <% end %>
+</div>
+
 <ul id="features">
   <% @features.each do |feature| %>
     <li id="<%= feature.name %>" class="feature clearfix"><%= render 'feature', :feature => feature %></li>
