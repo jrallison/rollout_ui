@@ -14,6 +14,18 @@ describe "Engine" do
       page.should have_content("featureA")
     end
 
+    describe "remove button" do
+      it "removes the feature" do
+        visit "/rollout"
+
+        within("#featureA .feature-header") do
+          click_button "remove"
+        end
+
+        $rollout.active?(:featureA, user).should be_false
+      end
+    end
+
     describe "percentage" do
       it "allows changing of the percentage" do
         visit "/rollout"
