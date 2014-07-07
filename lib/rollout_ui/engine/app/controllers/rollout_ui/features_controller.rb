@@ -1,9 +1,15 @@
 module RolloutUi
   class FeaturesController < RolloutUi::ApplicationController
-    before_filter :wrapper, :only => [:index]
+    before_filter :wrapper, :only => [:index, :create]
 
     def index
       @features = @wrapper.features.map{ |feature| RolloutUi::Feature.new(feature) }
+    end
+
+    def create
+      @wrapper.add_feature(params[:name])
+
+      redirect_to features_path
     end
 
     def update

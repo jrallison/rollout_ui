@@ -14,6 +14,19 @@ describe "Engine" do
       page.should have_content("featureA")
     end
 
+    describe "adding a feature" do
+      it "displays the added feature in the UI" do
+        visit "/rollout"
+
+        within(".add-feature") do
+          fill_in "name", with: "featureB"
+          click_button "Add Feature"
+        end
+
+        page.should have_content("featureB")
+      end
+    end
+
     describe "percentage" do
       it "allows changing of the percentage" do
         visit "/rollout"
