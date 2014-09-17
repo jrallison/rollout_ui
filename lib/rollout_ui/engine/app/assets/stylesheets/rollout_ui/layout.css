@@ -30,6 +30,10 @@ h1 img {
   padding: 0 25px;
 }
 
+.add-feature {
+  margin: 30px 0;
+}
+
 #container {
   width: 960px;
   margin: 0 auto;
@@ -52,12 +56,28 @@ h1 img {
   margin-bottom: 25px;
 }
 
+#features .feature header {
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  display: flex;
+}
+
 #features .feature h2 {
-  margin: 0px 0 23px;
-  text-align: center;
+  display: flex;
   font-size: 20px;
-  font-weight: normal;
-  letter-spacing: 1px;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -moz-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding: 0 25px;
+}
+
+#features .feature nav {
+  padding: 20px 29px;
 }
 
 #features .feature .groups {

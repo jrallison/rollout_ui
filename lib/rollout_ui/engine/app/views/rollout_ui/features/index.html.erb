@@ -4,6 +4,13 @@
   <% end %>
 </ul>
 
+<div class="add-feature">
+  <%= form_tag features_path do %>
+    <input name="name" placeholder="feature_name"></input>
+    <button>Add Feature</button>
+  <% end %>
+</div>
+
 <% content_for :onready do %>
   $("select").chosen({no_results_text: "No groups matched"});
   $("input.users").chosen();
