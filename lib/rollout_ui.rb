@@ -21,4 +21,14 @@ module RolloutUi
   def self.rollout
     @@rollout
   end
+
+  def self.track_features=(value)
+    @@track_features = value
+  end
+
+  def self.track_features
+    @@track_features
+  end
+  self.track_features = true
+
 end

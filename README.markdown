@@ -54,6 +54,15 @@ Put this somewhere before the `URLMap` in your `config.ru`:
       username == '<some username>' && password == '<some password>'
     end
 
+Configuration
+-------------
+
+By default, RolloutUI will attempt to take notice of new features that are not
+yet enabled. This behavior requires the use of redis as a backend to rollout. If
+you are using a different backend, you should disable this feature:
+
+`RolloutUi.track_features = false`
+
 Resources
 ---------
 
