@@ -60,6 +60,16 @@ describe RolloutUi::Wrapper do
 
       @rollout_ui.features.should == %w(anotherFeature featureA featureB zFeature)
     end
+
+    context "with feature tracking disabled" do
+      before(:all) { RolloutUi.track_features = false }
+      after(:all)  { RolloutUi.track_features = true }
+
+      it "should not notice new features" do
+        $rollout.active?(:featureA)
+        @rollout_ui.features.should == []
+      end
+    end
   end
 
   describe "#add_feature" do
