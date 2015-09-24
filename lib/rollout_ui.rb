@@ -21,4 +21,15 @@ module RolloutUi
   def self.rollout
     @@rollout
   end
+
+  def self.setup(&block)
+    @@config ||= RolloutUi::Engine::Configuration.new
+    yield @@config if block
+    return @@config
+  end
+
+  def self.config
+    Rails.application.config
+  end
+
 end
