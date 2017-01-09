@@ -18,7 +18,7 @@ module RolloutUi
     end
 
     def user_ids
-      rollout.get(feature_for(name)).users
+      rollout.get(feature_for(name)).users.to_a
     end
 
     def percentage=(percentage_val)
