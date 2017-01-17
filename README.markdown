@@ -38,6 +38,17 @@ Mount the Rails engine in your routes.rb file:
 
     mount RolloutUi::Engine => "/rollout"
 
+### Rails 3.2
+
+In your `application.rb` file, require rollout_ui and the engine:
+
+    require "rollout_ui"
+    require "rollout_ui/engine"
+
+Mount the Rails engine in your routes.rb file:
+
+    mount RolloutUi::Engine => "/rollout"
+
 ### Other
 
 Run the sinatra app.  You can either run it as it's own app, or run it in
