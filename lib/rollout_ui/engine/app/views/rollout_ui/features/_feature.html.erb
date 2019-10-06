@@ -5,7 +5,7 @@
     <label>Percentage</label>
     <select class="percentage" name="percentage">
       <% 101.times do |i| %>
-        <option value="<%= i %>"<%= " selected='selected'" if feature.percentage == i.to_s %>><%= i %>%</option>
+        <option value="<%= i %>"<%= " selected='selected'" if feature.percentage.to_i == i %>><%= i %>%</option>
       <% end %>
     </select>
     <input type="submit" value="Save" />
